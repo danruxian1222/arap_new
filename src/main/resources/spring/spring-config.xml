@@ -3,12 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/mvc
-	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 
     <context:component-scan base-package="com.cmb">
@@ -16,6 +19,16 @@
     </context:component-scan>
 
     <bean id="springContextHolder" class="com.cmb.util.SpringContextHolder"></bean>
+
+    <bean id="aopTest" class="com.cmb.aop.AopTest"></bean>
+
+    <aop:config>
+        <aop:aspect ref="aopTest">
+            <aop:pointcut id="testAop" expression="execution(* *.prtRole(..))"/>
+            <aop:before method="sayAopTestBefore" pointcut-ref="testAop"></aop:before>
+            <aop:after method="sayAopTestAfter" pointcut-ref="testAop"></aop:after>
+        </aop:aspect>
+    </aop:config>
 
     <import resource="spring-mybatis.xml"></import>
 

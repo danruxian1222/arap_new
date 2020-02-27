@@ -10,7 +10,19 @@ import org.springframework.stereotype.Service;
 public class RoleServiceImpl implements RoleService {
     @Override
     public void prtRole() {
-        System.out.println("admin");
+        System.out.println("prtRole");
     }
+
+    @Override
+    public void prtAopBefore() {
+        System.out.println("before");
+    }
+
+    @Override
+    public void prtAopAfter() {
+        System.out.println("after");
+    }
+
+
 
 }

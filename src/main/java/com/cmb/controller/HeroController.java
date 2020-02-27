@@ -2,10 +2,7 @@ package com.cmb.controller;
 
 import com.cmb.entity.Hero;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "hero")
@@ -31,5 +28,33 @@ public class HeroController {
         hero.setId(50);
         hero.setName("dulv");
         return hero;
+    }
+
+    @RequestMapping(value = "postHeroes", method = RequestMethod.POST)
+    @ResponseBody
+    public Hero postHeroes(@RequestParam("id") Integer id){
+        System.out.println(id);
+        Hero hero =  new Hero();
+        hero.setId(50);
+        hero.setName("dulv");
+        return hero;
+    }
+
+    @RequestMapping(value = "getHeroes", method = RequestMethod.GET)
+    @ResponseBody
+    public Hero getHeroes(@RequestParam("id") Integer id){
+        System.out.println(id);
+        Hero hero =  new Hero();
+        hero.setId(50);
+        hero.setName("dulv");
+        return hero;
+    }
+
+    @RequestMapping(value = "jsonHeroes", method = RequestMethod.POST)
+    @ResponseBody
+    public Hero jsonHeroes(@RequestBody Hero paraHero){
+
+        System.out.println(paraHero);
+        return paraHero;
     }
 }

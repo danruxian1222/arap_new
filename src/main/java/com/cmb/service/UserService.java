@@ -1,9 +1,10 @@
 package com.cmb.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cmb.entity.User;
 
 public interface UserService {
 
     void prtRole();
 
+    User queryUser(Integer id);
 }
