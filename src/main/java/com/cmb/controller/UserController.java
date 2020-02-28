@@ -42,7 +42,7 @@ public class UserController {
 
     @RequestMapping(value="/upload", method=RequestMethod.POST)
     @ResponseBody
-    public String fileUpload(@RequestParam(value="file") MultipartFile multipartFile) throws IOException {
+    public String fileUpload(@RequestParam(value="fileName") MultipartFile multipartFile) throws IOException {
         //处理逻辑
         String path = "F:/spring_ws/upload/" + multipartFile.getOriginalFilename();
         multipartFile.transferTo(new File(path));

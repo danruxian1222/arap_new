@@ -10,13 +10,18 @@ public class HeroController {
 
     @RequestMapping(value = "heroes", method = RequestMethod.GET)
     @ResponseBody
-    public Hero[] getHeroes(){
+    public Hero[] getHeroes() {
         System.out.println("getHeroes");
 
         Hero hero =  new Hero();
         hero.setId(50);
         hero.setName("dulv");
         Hero[] array = new Hero[]{hero};
+
+        boolean flag = true;
+        if(flag){
+            throw new NullPointerException("exception error! ");
+        }
         return array;
     }
 
@@ -44,6 +49,16 @@ public class HeroController {
     @ResponseBody
     public Hero getHeroes(@RequestParam("id") Integer id){
         System.out.println(id);
+        Hero hero =  new Hero();
+        hero.setId(50);
+        hero.setName("dulv");
+        return hero;
+    }
+
+    @RequestMapping(value = "getHeroesStr", method = RequestMethod.GET)
+    @ResponseBody
+    public Hero getHeroesStr(@RequestParam("str") String str){
+        System.out.println(str);
         Hero hero =  new Hero();
         hero.setId(50);
         hero.setName("dulv");
