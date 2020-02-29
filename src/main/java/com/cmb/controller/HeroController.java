@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "hero")
-public class HeroController {
+public class HeroController extends BaseController{
 
     @RequestMapping(value = "heroes", method = RequestMethod.GET)
     @ResponseBody
