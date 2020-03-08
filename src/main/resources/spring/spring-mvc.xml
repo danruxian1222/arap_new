@@ -40,4 +40,17 @@
         <property name="uploadTempDir" value="/" />
     </bean>
 
+    <!-- 定义拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.cmb.interceptor.SessionTimeOutInterceptor">
+            <property name="excludedUrls">
+                <list>
+                    <value>/checkLogin</value>
+                </list>
+            </property>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
