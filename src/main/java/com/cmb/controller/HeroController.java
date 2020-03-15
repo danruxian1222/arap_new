@@ -20,7 +20,7 @@ public class HeroController extends BaseController{
 
         boolean flag = true;
         if(flag){
-            throw new NullPointerException("exception error! ");
+            throw new NullPointerException("空指针！");
         }
         return array;
     }
