@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LogController extends BaseController{
 
     @RequestMapping(value = "logInfo",method = RequestMethod.GET)
-    @LogInfo(check = true,value = "测试注解")
+    @LogInfo(check = false,value = "测试注解")
     @ResponseBody
     public String logInfo(){
         System.out.println("--------------logInfo-------------");

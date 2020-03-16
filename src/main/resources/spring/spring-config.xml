@@ -22,6 +22,9 @@
 
     <bean id="aopTest" class="com.cmb.aop.AopTest"></bean>
 
+    <!-- 配置开启@Aspect支持 -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
     <aop:config>
         <aop:aspect ref="aopTest">
             <aop:pointcut id="testAop" expression="execution(* *.prtRole(..))"/>
