@@ -14,4 +14,14 @@ public class BaseController {
         jo.put("msg",e.getMessage());
         return jo;
     }
+
+    @ResponseBody
+    @ExceptionHandler(RuntimeException.class)
+    JSONObject handleRuntimeException (Exception e){
+        System.out.println(e.getMessage());
+        JSONObject jo = new JSONObject();
+        jo.put("msg",e.getMessage());
+        jo.put("success",false);
+        return jo;
+    }
 }
