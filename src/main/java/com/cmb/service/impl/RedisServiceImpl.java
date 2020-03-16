@@ -5,6 +5,7 @@ import com.cmb.entity.ResponseVO;
 import com.cmb.entity.User;
 import com.cmb.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisServiceImpl implements RedisService {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
     @Override
     public ResponseVO queryRedis() {
@@ -34,7 +35,7 @@ public class RedisServiceImpl implements RedisService {
         User u = new User();
         u.setUserName("中国人");
         u.setPassword("中@#￥*（）——+");
-        redisTemplate.boundValueOps("user").set(JSONObject.toJSONString(u),1000, TimeUnit.SECONDS);
+        redisTemplate.boundValueOps("user").set(u,1000, TimeUnit.SECONDS);
 
         System.out.println(redisTemplate.opsForValue().get("str"));
         System.out.println(redisTemplate.opsForHash().get("map","dulv"));
@@ -42,10 +43,20 @@ public class RedisServiceImpl implements RedisService {
 
         System.out.println(redisTemplate.opsForSet().members("set"));
 
-        JSONObject jsonObject = JSONObject.parseObject((String)redisTemplate.opsForValue().get("user"));
+        Object o = redisTemplate.opsForValue().get("user");
 
-        System.out.println(jsonObject);
+        User user = JSONObject.parseObject(JSONObject.toJSONString(o),User.class);
+
+        System.out.println(user);
 
         return new ResponseVO();
+    }
+
+    @Override
+    public ResponseVO getValueByKey(String key) {
+        String str = (String) redisTemplate.opsForValue().get("dulv");
+
+        System.out.println(str);
+        return null;
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmb.dao.HeroDao">
+
+	<!-- <resultMap type="com.dulv.pojo.User" id="UserResult">
+		<result property="userName" column="userName" />
+		<result property="password" column="password" />
+	</resultMap> -->
+
+	<select id="findById" resultType="com.cmb.entity.Hero">
+		select * from hero where id = #{id}
+	</select>
+
+	<insert id="save" parameterType="com.cmb.entity.Hero" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO hero (name , age) VALUES(#{name}, #{age})
+    </insert>
+</mapper>

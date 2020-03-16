@@ -1,5 +1,8 @@
 package com.cmb.entity;
 
+
+import com.alibaba.fastjson.JSONObject;
+
 public class User {
 	
 	private String userName;
@@ -16,6 +19,11 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public String toString() {
+		return JSONObject.toJSONString(this);
 	}
 
 }
