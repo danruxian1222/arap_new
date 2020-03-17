@@ -3,6 +3,7 @@ package com.cmb.service.impl;
 import com.cmb.dao.HeroDao;
 import com.cmb.entity.Hero;
 import com.cmb.entity.ResponseVO;
+import com.cmb.repository.HeroRepository;
 import com.cmb.service.CacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,12 +12,12 @@ import org.springframework.stereotype.Service;
 public class CacheServiceImpl implements CacheService {
 
     @Autowired
-    private HeroDao heroDao;
+    private HeroRepository heroRepository;
 
     @Override
     public Hero getValueByKey(Integer key) {
 
-        Hero h = heroDao.findById(key);
+        Hero h = heroRepository.findById(key);
         return h;
     }
 
@@ -26,9 +27,7 @@ public class CacheServiceImpl implements CacheService {
         h.setName("李金玲");
         h.setAge(5);
 
-        int i = heroDao.save(h);
-
-        System.out.println(i);
+        heroRepository.save(h);
 
         return h;
     }
